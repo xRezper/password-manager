@@ -1,6 +1,6 @@
 import customtkinter
 import tkinter
-
+from pass_main import init_variables
 
 customtkinter.set_appearance_mode("System")
 customtkinter.set_default_color_theme("blue")
@@ -11,8 +11,8 @@ root.geometry("600x600")
 
 
 init_variables()
-from pass_main import *
 
+from pass_main import *
 
 #Generate Password
 button = customtkinter.CTkButton(master=root, text="Generate Password", command=gen_pass)
