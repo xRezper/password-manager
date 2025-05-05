@@ -14,11 +14,11 @@ init_variables()
 
 from pass_main import *
 
-#Generate Password
+# Generate Password Button
 button = customtkinter.CTkButton(master=root, text="Generate Password", command=gen_pass)
 button.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
 
-
+# Checkbox for Numbers in Password
 
 checkbox_1 = customtkinter.CTkCheckBox(root, text="Numbers", variable=check_var, onvalue=True, offvalue=False, command=check_numbers)
 checkbox_1.grid(row=1, column=0, padx=20, pady=(0, 20), sticky="w")

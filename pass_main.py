@@ -6,10 +6,13 @@ chars = []
 check_var = None
 
 
+# globalis check_var variable - sets check_var to false
 
 def init_variables():
     global check_var
     check_var = tkinter.BooleanVar(value=False)
+
+# Set Numbers into chars list
 
 def check_numbers():
     if check_var.get():
@@ -17,6 +20,8 @@ def check_numbers():
         print(chars)
     else:
         pass
+
+# generate password from chars list
 
 def gen_pass():
     
