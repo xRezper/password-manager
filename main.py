@@ -1,26 +1,46 @@
-import customtkinter
-import tkinter
-from pass_main import init_variables
+ 
+import customtkinter as ctk 
+import tkinter.messagebox as tkmb 
+from important import log
+  
+  
+# Selecting GUI theme - dark, light , system (for system default) 
+ctk.set_appearance_mode("dark") 
+  
+# Selecting color theme - blue, green, dark-blue 
+ctk.set_default_color_theme("blue") 
+  
+app = ctk.CTk() 
+app.geometry("400x400") 
+app.title("Modern Login UI using Customtkinter") 
+  
 
-customtkinter.set_appearance_mode("System")
-customtkinter.set_default_color_theme("blue")
-
-
-root = customtkinter.CTk()
-root.geometry("600x600")
-
-
-init_variables()
-
-from pass_main import *
-
-# Generate Password Button
-button = customtkinter.CTkButton(master=root, text="Generate Password", command=gen_pass)
-button.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
-
-# Checkbox for Numbers in Password
-
-checkbox_1 = customtkinter.CTkCheckBox(root, text="Numbers", variable=check_var, onvalue=True, offvalue=False, command=check_numbers)
-checkbox_1.grid(row=1, column=0, padx=20, pady=(0, 20), sticky="w")
-
-root.mainloop()
+  
+  
+label = ctk.CTkLabel(app,text="This is the main UI page") 
+  
+label.pack(pady=20) 
+  
+  
+frame = ctk.CTkFrame(master=app) 
+frame.pack(pady=20,padx=40,fill='both',expand=True) 
+  
+label = ctk.CTkLabel(master=frame,text='Modern Login System UI') 
+label.pack(pady=12,padx=10) 
+  
+  
+user_entry= ctk.CTkEntry(master=frame,placeholder_text="Username") 
+user_entry.pack(pady=12,padx=10) 
+  
+user_pass= ctk.CTkEntry(master=frame,placeholder_text="Password",show="*") 
+user_pass.pack(pady=12,padx=10) 
+  
+  
+button = ctk.CTkButton(master=frame,text='Login',command=lambda: log(user_entry, user_pass, app)) 
+button.pack(pady=12,padx=10) 
+  
+checkbox = ctk.CTkCheckBox(master=frame,text='Remember Me') 
+checkbox.pack(pady=12,padx=10) 
+  
+  
+app.mainloop()
