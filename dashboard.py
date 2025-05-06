@@ -10,6 +10,8 @@ def open_dashboard(app):
     label.pack(pady=40)
 
     logout_button = ctk.CTkButton(dashboard, text="Logout", command=lambda: [dashboard.destroy(), app.deiconify()])
-    logout_button.pack(pady=20)
+    logout_button.place(relx=0, rely=1, x=10, y=-10, anchor="sw")
+    
+    
 
     return dashboard
