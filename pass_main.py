@@ -32,10 +32,8 @@ password_gen = ''
 def gen_pass():
     global password_gen
 
-    if len(chars) == 0:
-        EOFError
-
-    
+    if not chars:  # Check if chars list is empty
+        raise ValueError("Keine Zeichen zum Generieren des Passworts ausgewählt! Bitte wählen Sie mindestens eine Zeichenkategorie aus.")
 
     for x in range(20):
         password_gen += random.choice(chars)
