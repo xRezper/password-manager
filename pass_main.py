@@ -1,16 +1,28 @@
 import random
 import tkinter
+import string
 
 
 chars = []
 check_var = None
+check_let = None
+check_let_up = None
+check_spe = None
 
 
 # globalis check_var variable - sets check_var to false
 
 def init_variables():
     global check_var
+    global check_let
+    global check_let_up
+    global check_spe
     check_var = tkinter.BooleanVar(value=False)
+    check_let = tkinter.BooleanVar(value=False)
+    check_let_up = tkinter.BooleanVar(value=False)
+    check_spe = tkinter.BooleanVar(value=False)
+
+
 
 
 # Set Numbers into chars list
@@ -39,5 +51,49 @@ def gen_pass():
         password_gen += random.choice(chars)
 
     print(password_gen)
+    password_gen = ''
+
+
+def check_letters():
+    small_letters = list(string.ascii_lowercase)
+    if check_let.get():
+        chars.extend(small_letters)
+        print(chars)
+    else:
+        for x in small_letters:
+            while x in chars:
+                chars.remove(x)
+
+def check_letters_up():
+    upper_letters = list(string.ascii_uppercase)
+    if check_let_up.get():
+        chars.extend(upper_letters)
+        print(chars)
+    else:
+        for x in upper_letters:
+            while x in chars:
+                chars.remove(x)
+
+
+def check_special():
+    special = ["!", "?", "§", "$", "%", "&", "/", "(", ")", "=", "-", ".", ";", ":", "_", "#", "*", "+"]
+    if check_spe.get():
+        chars.extend(special)
+        print(special)
+    else:
+        for x in special:
+            while x in chars:
+                chars.remove(x)
+
+    
+
+
+
+
+
+
+
+
+
 
 
