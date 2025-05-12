@@ -1,6 +1,13 @@
 import random
 import tkinter
 import string
+import os
+import json
+
+entries = []
+DATA_FILE = "password_entries.json"
+
+
 
 
 chars = []
@@ -51,7 +58,7 @@ def gen_pass():
         password_gen += random.choice(chars)
 
     print(password_gen)
-    password_gen = ''
+    return password_gen
 
 
 def check_letters():
@@ -88,7 +95,35 @@ def check_special():
     
 
 
+def save_entries():
+    """Speichert die Einträge in einer JSON-Datei"""
+    with open(DATA_FILE, 'w') as f:
+        json.dump(entries, f)
 
+def load_entries():
+    """Lädt die Einträge aus der JSON-Datei"""
+    global entries
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, 'r') as f:
+            entries = json.load(f)
+    else:
+        entries = []
+
+def add_entry(platform, username, password_gen):
+    """Fügt einen neuen Eintrag hinzu"""
+    entries.append({
+        'platform': platform,
+        'username': username,
+        'password': password_gen
+    })
+    save_entries()
+
+def get_entries():
+    """Gibt alle Einträge zurück"""
+    return entries
+
+# Beim Start die Einträge laden
+load_entries()
 
 
 

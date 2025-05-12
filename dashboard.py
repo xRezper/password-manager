@@ -1,6 +1,8 @@
 import customtkinter as ctk
 from PIL import Image
 from dashboard_func import *
+import os
+import sys
 
 
 def open_dashboard(app):
@@ -11,13 +13,23 @@ def open_dashboard(app):
     label = ctk.CTkLabel(dashboard, text="")
     label.pack(pady=40)
 
+    def resource_path(relative_path):
+    
+        try:
+            # PyInstaller creates a temp folder and stores path in _MEIPASS
+            base_path = sys._MEIPASS
+        except Exception:
+            base_path = os.path.abspath(".")
+
+        return os.path.join(base_path, relative_path)
+
 # Frame start
 
     frame = ctk.CTkFrame(master=dashboard) 
     frame.place(x=0, y=0, relwidth=0.2, relheight=1) 
   
-    logo_image = ctk.CTkImage(Image.open('images/passwortgen.png'), size=(100, 100))
-        
+    logo_image = ctk.CTkImage(Image.open(resource_path('images/passwortgen.png')), size=(100, 100))
+    
     logo_label = ctk.CTkLabel(master=frame, text="", image=logo_image)
     logo_label.pack(pady=12, padx=10)
 
