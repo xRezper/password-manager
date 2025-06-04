@@ -104,8 +104,16 @@ def load_entries():
     """Lädt die Einträge aus der JSON-Datei"""
     global entries
     if os.path.exists(DATA_FILE):
-        with open(DATA_FILE, 'r') as f:
-            entries = json.load(f)
+        try:
+            with open(DATA_FILE, 'r') as f:
+                file_content = f.read()
+                if file_content.strip():  # Check if file is not empty
+                    entries = json.loads(file_content)
+                else:
+                    entries = []
+        except json.JSONDecodeError:
+            # If file contains invalid JSON, start fresh
+            entries = []
     else:
         entries = []
 
